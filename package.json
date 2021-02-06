@@ -19,7 +19,17 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server",
+    "build": "npm run webpack",
+    "client": "webpack serve --config ./client/webpack.config.js",
+    "server": "node server",
+    "dev": "run-p dev:client dev:server",
+    "dev:client": "npm run webpack -- --watch",
+    "dev:server": "nodemon server",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "webpack": "webpack --config ./client/webpack.config.js",
+    "knex": "knex --knexfile ./server/db/knexfile.js"
   },
   "babel": {
     "presets": [
@@ -34,10 +44,7 @@
     ]
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "knex": "^0.21.17",
-    "sqlite3": "^5.0.0",
-    "superagent": "^6.1.0"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",
